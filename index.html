@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visora — Get Cited by ChatGPT & Perplexity</title>
+  <meta name="description" content="Find out why your competitors appear in ChatGPT and Perplexity — and yours doesn't. Visora tracks AI visibility and tells you exactly what to fix.">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Visora",
+    "applicationCategory": "BusinessApplication",
+    "description": "GEO (Generative Engine Optimization) tool that helps businesses appear in ChatGPT, Perplexity, and Claude recommendations.",
+    "url": "https://visoraapp.com",
+    "offers": {
+      "@type": "Offer",
+      "price": "29",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "billingDuration": "P1M"
+      }
+    },
+    "featureList": [
+      "AI visibility tracking across ChatGPT, Perplexity, Claude",
+      "Competitor citation analysis",
+      "GEO optimization recommendations",
+      "Content generation for AI search"
+    ]
+  }
+  </script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is GEO (Generative Engine Optimization)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GEO is the practice of optimizing your content so AI search engines like ChatGPT, Perplexity, and Claude recommend your brand. Unlike traditional SEO which targets Google rankings, GEO targets AI-generated answers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Visora track AI visibility?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Visora sends hundreds of relevant questions to AI platforms and analyzes which brands get cited. We track your visibility score over time and compare it against your competitors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which AI platforms does Visora track?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Visora currently tracks Perplexity AI, with ChatGPT and Google AI Overviews coming soon. Perplexity is the most valuable platform to track because it shows real-time citation sources."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-2: #111111;
+      --bg-3: #181818;
+      --border: #222222;
+      --border-bright: #333333;
+      --text: #e8e8e8;
+      --text-2: #888888;
+      --text-3: #555555;
+      --green: #00e87a;
+      --green-dim: rgba(0, 232, 122, 0.12);
+      --green-glow: rgba(0, 232, 122, 0.06);
+      --red: #ff4d4d;
+      --yellow: #f5c518;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Geist', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--green); }
+    nav .cta-small {
+      background: var(--green);
+      color: #000;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    nav .cta-small:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(ellipse, rgba(0,232,122,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-dim);
+      border: 1px solid rgba(0,232,122,0.25);
+      color: var(--green);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge::before {
+      content: '●';
+      font-size: 8px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(42px, 7vw, 80px);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      max-width: 900px;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-2);
+      max-width: 560px;
+      margin-top: 24px;
+      line-height: 1.65;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+    .hero-form {
+      display: flex; gap: 10px;
+      margin-top: 40px;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+    .hero-form input {
+      background: var(--bg-2);
+      border: 1px solid var(--border-bright);
+      color: var(--text);
+      font-family: 'Geist', sans-serif;
+      font-size: 15px;
+      padding: 14px 20px;
+      border-radius: 8px;
+      width: 300px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .hero-form input:focus { border-color: var(--green); }
+    .hero-form input::placeholder { color: var(--text-3); }
+    .btn-primary {
+      background: var(--green);
+      color: #000;
+      font-family: 'Geist', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .hero-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 14px;
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* PROOF BAR */
+    .proof-bar {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex; align-items: center; justify-content: center; gap: 48px;
+      flex-wrap: wrap;
+    }
+    .proof-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .proof-item strong { color: var(--text-2); font-weight: 500; }
+
+    /* LIVE DATA SECTION */
+    .section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .section h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+      color: var(--text);
+      max-width: 700px;
+    }
+    .section h2 em { font-style: italic; color: var(--text-2); }
+
+    /* VISIBILITY TABLE */
+    .vis-demo {
+      margin-top: 56px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .vis-demo-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-3);
+    }
+    .vis-demo-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-3);
+      letter-spacing: 0.06em;
+    }
+    .vis-demo-live {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--green);
+    }
+    .vis-demo-live::before {
+      content: '●'; font-size: 7px;
+      animation: pulse 2s infinite;
+    }
+    .vis-table { width: 100%; border-collapse: collapse; }
+    .vis-table th {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 14px 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .vis-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .vis-table tr:last-child td { border-bottom: none; }
+    .vis-table tr.highlight { background: var(--green-glow); }
+    .brand-name { font-weight: 500; }
+    .brand-name.you { color: var(--green); }
+    .score-bar-wrap { display: flex; align-items: center; gap: 12px; }
+    .score-bar-bg {
+      flex: 1; height: 6px;
+      background: var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: var(--text-3);
+      transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .score-bar-fill.you { background: var(--green); }
+    .score-bar-fill.low { background: var(--red); }
+    .score-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      min-width: 28px;
+      text-align: right;
+    }
+    .score-num.you { color: var(--green); }
+    .score-num.low { color: var(--red); }
+    .tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .tag.good { background: var(--green-dim); color: var(--green); }
+    .tag.bad { background: rgba(255,77,77,0.1); color: var(--red); }
+    .tag.warn { background: rgba(245,197,24,0.1); color: var(--yellow); }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+      margin-top: 56px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .step {
+      background: var(--bg-2);
+      padding: 36px 32px;
+      position: relative;
+    }
+    .step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+    .step h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .step p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 56px;
+    }
+    .plan {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+    }
+    .plan.featured {
+      border-color: var(--green);
+      position: relative;
+    }
+    .plan-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--green);
+      color: #000;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .plan-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .plan-price {
+      font-family: 'Instrument Serif', serif;
+      font-size: 42px;
+      color: var(--text);
+      line-height: 1;
+    }
+    .plan-price span { font-size: 18px; color: var(--text-2); }
+    .plan-desc { font-size: 13px; color: var(--text-2); margin-top: 8px; margin-bottom: 24px; }
+    .plan-features { list-style: none; }
+    .plan-features li {
+      font-size: 13px;
+      color: var(--text-2);
+      padding: 6px 0;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .plan-features li::before { content: '—'; color: var(--text-3); font-size: 11px; }
+    .plan-features li.yes::before { content: '✓'; color: var(--green); }
+
+    /* FAQ */
+    .faq-list { margin-top: 48px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .faq-q {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .faq-a { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+
+    /* CTA SECTION */
+    .cta-section {
+      padding: 120px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(0,232,122,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      letter-spacing: -0.8px;
+      line-height: 1.1;
+      margin-bottom: 40px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer .logo { font-size: 18px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 13px; color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text-2); }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+    }
+
+    /* SUCCESS STATE */
+    .success-msg {
+      display: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--green);
+      margin-top: 14px;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .hero-form { flex-direction: column; width: 100%; max-width: 340px; }
+      .hero-form input { width: 100%; }
+      .proof-bar { gap: 24px; padding: 16px 24px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="logo">Visora<span>.</span></a>
+    <a href="#waitlist" class="cta-small">Join Waitlist</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">GEO · Generative Engine Optimization</div>
+    <h1>Your competitors appear in ChatGPT.<br><em>You don't. Here's why.</em></h1>
+    <p class="hero-sub">
+      Visora tracks which brands AI search engines recommend — and tells you exactly
+      what your competitors are doing to get cited while you're invisible.
+    </p>
+    <form class="hero-form" id="waitlist-form">
+      <input type="email" placeholder="your@email.com" required id="email-input">
+      <button type="submit" class="btn-primary">Get Early Access</button>
+    </form>
+    <p class="hero-note">Free to join · No credit card · Ships Q2 2026</p>
+    <p class="success-msg" id="success-msg">✓ You're on the list. We'll be in touch.</p>
+  </section>
+
+  <!-- PROOF BAR -->
+  <div class="proof-bar">
+    <div class="proof-item">Tracking <strong>50+ questions</strong> per brand</div>
+    <div class="proof-item">Powered by <strong>Perplexity API</strong></div>
+    <div class="proof-item">Built for <strong>indie hackers & SMBs</strong></div>
+    <div class="proof-item">Starting at <strong>$29/mo</strong></div>
+  </div>
+
+  <!-- VISIBILITY DEMO -->
+  <div class="section">
+    <p class="section-label">Live Data · Real Brands</p>
+    <h2>We ran the test.<br><em>Here's what we found.</em></h2>
+    <p style="color:var(--text-2);margin-top:16px;font-size:15px;max-width:580px;">
+      We asked Perplexity 10 questions about GEO tools. Here's how often each brand was cited.
+      This is exactly the kind of report Visora generates for your brand.
+    </p>
+
+    <div class="vis-demo">
+      <div class="vis-demo-header">
+        <span class="vis-demo-title">AI VISIBILITY REPORT · PERPLEXITY SONAR · 10 QUERIES</span>
+        <span class="vis-demo-live">LIVE DATA</span>
+      </div>
+      <table class="vis-table">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>AI Visibility Score</th>
+            <th>Citations / 10 queries</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="brand-name">Otterly</span></td>
+            <td>
+              <div class="score-bar-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:0%" data-width="100%"></div></div>
+                <span class="score-num">5</span>
+              </div>
+            </td>
+            <td style="font-family:'DM Mono',monospace;font-size:13px;">5 / 10</td>
+            <td><span class="tag good">Visible</span></td>
+          </tr>
+          <tr>
+            <td><span class="brand-name">Peec</span></td>
+            <td>
+              <div class="score-bar-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:0%" data-width="60%"></div></div>
+                <span class="score-num">3</span>
+              </div>
+            </td>
+            <td style="font-family:'DM Mono',monospace;font-size:13px;">3 / 10</td>
+            <td><span class="tag warn">Partial</span></td>
+          </tr>
+          <tr>
+            <td><span class="brand-name">Scrunch</span></td>
+            <td>
+              <div class="score-bar-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:0%" data-width="20%"></div></div>
+                <span class="score-num">1</span>
+              </div>
+            </td>
+            <td style="font-family:'DM Mono',monospace;font-size:13px;">1 / 10</td>
+            <td><span class="tag warn">Low</span></td>
+          </tr>
+          <tr class="highlight">
+            <td><span class="brand-name you">Rankscale ← typical SaaS</span></td>
+            <td>
+              <div class="score-bar-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill you low" style="width:0%" data-width="0%"></div></div>
+                <span class="score-num low">0</span>
+              </div>
+            </td>
+            <td style="font-family:'DM Mono',monospace;font-size:13px;color:var(--red);">0 / 10</td>
+            <td><span class="tag bad">Invisible</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text-3);margin-top:16px;">
+      Data collected March 2026 · Perplexity Sonar model · 10 GEO-related queries
+    </p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <p class="section-label">How It Works</p>
+    <h2>Three layers.<br><em>One platform.</em></h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01 · DETECT</div>
+        <h3>See exactly where you stand</h3>
+        <p>Enter your website and up to 5 competitors. Visora sends 50 real questions to AI platforms and tracks every citation. You get a visibility score and a full breakdown.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02 · ANALYZE</div>
+        <h3>Find out why they beat you</h3>
+        <p>We trace every citation back to its source. Which third-party sites are making your competitor appear? What content structure do they use? You see the exact playbook.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03 · FIX</div>
+        <h3>Get cited. Stay cited.</h3>
+        <p>Visora generates ready-to-use FAQ pages, Schema markup code, and a list of exactly which platforms you need to appear on. One click, done.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="section" id="pricing">
+    <p class="section-label">Pricing</p>
+    <h2>Simple pricing.<br><em>No enterprise BS.</em></h2>
+
+    <div class="pricing-grid">
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">Free</div>
+        <div class="plan-desc">See your AI visibility score once a month.</div>
+        <ul class="plan-features">
+          <li class="yes">1 website</li>
+          <li class="yes">Monthly scan</li>
+          <li class="yes">Visibility score</li>
+          <li>No competitor tracking</li>
+          <li>No content generation</li>
+        </ul>
+        <a href="#waitlist" style="display:block;margin-top:24px;background:var(--bg-3);border:1px solid var(--border-bright);color:var(--text-2);text-align:center;padding:12px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">Join Waitlist</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Builder</div>
+        <div class="plan-price">$29<span>/mo</span></div>
+        <div class="plan-desc">For indie hackers who want to get cited.</div>
+        <ul class="plan-features">
+          <li class="yes">1 website</li>
+          <li class="yes">Weekly scans</li>
+          <li class="yes">5 competitor tracking</li>
+          <li class="yes">Citation source analysis</li>
+          <li class="yes">10 content generations/mo</li>
+          <li class="yes">Email reports</li>
+        </ul>
+        <a href="https://www.creem.io/payment/prod_1dI5h87ZhzzodGpRrRSvbW" style="display:block;margin-top:24px;background:var(--green);color:#000;text-align:center;padding:12px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">Get Builder →</a>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Growth</div>
+        <div class="plan-price">$79<span>/mo</span></div>
+        <div class="plan-desc">For teams scaling across multiple products.</div>
+        <ul class="plan-features">
+          <li class="yes">3 websites</li>
+          <li class="yes">Daily scans</li>
+          <li class="yes">Unlimited competitors</li>
+          <li class="yes">Unlimited content generation</li>
+          <li class="yes">Team access (2 seats)</li>
+          <li class="yes">API access</li>
+        </ul>
+        <a href="https://www.creem.io/payment/prod_1Xl8T46dBXT2zWowehqoQf" style="display:block;margin-top:24px;background:var(--bg-3);border:1px solid var(--border-bright);color:var(--text);text-align:center;padding:12px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">Get Growth →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <p class="section-label">FAQ</p>
+    <h2>Questions about<br><em>AI visibility.</em></h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is GEO (Generative Engine Optimization)?</div>
+        <div class="faq-a">GEO is the practice of optimizing your content so AI search engines like ChatGPT, Perplexity, and Claude recommend your brand when users ask relevant questions. Unlike traditional SEO which targets Google rankings, GEO targets AI-generated answers. As AI search traffic grows 500%+ year-over-year, GEO is becoming essential for any online business.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does Visora actually track AI visibility?</div>
+        <div class="faq-a">Visora sends 50 carefully crafted questions — the kind your target customers actually ask AI assistants — to AI platforms like Perplexity. We analyze each response to detect brand mentions, citation sources, and contextual framing. The data is real: it reflects what AI systems are recommending right now, not a simulation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Why does Perplexity matter more than ChatGPT for tracking?</div>
+        <div class="faq-a">Perplexity is a real-time search engine — it crawls the web and shows its sources. This makes it the most transparent platform to track: you can see exactly which websites and articles lead to a brand being cited. ChatGPT uses training data that updates periodically, making it harder to attribute changes to specific actions. Perplexity is our primary data source because it gives actionable signals.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between Visora and SEO tools like Ahrefs?</div>
+        <div class="faq-a">Traditional SEO tools track Google rankings and backlinks. Visora tracks AI citations — a completely different distribution channel. A page can rank #1 on Google and still be invisible to ChatGPT. Visora bridges this gap: it tells you not just where you rank, but whether AI systems are recommending you, and what specifically needs to change for them to start.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">When is Visora launching?</div>
+        <div class="faq-a">We're targeting Q2 2026. Early access list members get first access, a discounted rate, and direct input into which features ship first. Join the waitlist above — we'll send you an update as soon as we open the beta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="cta-section" id="waitlist">
+    <h2>Stop being invisible<br>to AI search.</h2>
+    <form class="hero-form" style="justify-content:center" id="cta-form">
+      <input type="email" placeholder="your@email.com" required id="cta-email">
+      <button type="submit" class="btn-primary">Join the Waitlist</button>
+    </form>
+    <p class="hero-note" style="margin-top:14px;">Free · No spam · Unsubscribe anytime</p>
+    <p class="success-msg" id="cta-success">✓ You're on the list. We'll be in touch.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="/" class="logo">Visora<span style="color:var(--green)">.</span></a>
+    <div class="footer-links">
+      <a href="#pricing">Pricing</a>
+      <a href="mailto:hello@visoraapp.com">Contact</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </div>
+    <span class="footer-copy">© 2026 Visora · visoraapp.com</span>
+  </footer>
+
+  <script>
+    // Animate score bars on scroll
+    const bars = document.querySelectorAll('.score-bar-fill[data-width]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.width = e.target.dataset.width;
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(b => observer.observe(b));
+
+    // Email form handler
+    function handleSubmit(emailId, formId, successId) {
+      const form = document.getElementById(formId);
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById(emailId).value;
+        const btn = form.querySelector('button');
+        btn.textContent = 'Joining...';
+        btn.disabled = true;
+
+        // Store locally + show success
+        try {
+          await fetch('https://formspree.io/f/xpwzgqvk', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: 'visora-landing' })
+          });
+        } catch(err) {}
+
+        form.style.display = 'none';
+        const msg = document.getElementById(successId);
+        msg.style.display = 'block';
+      });
+    }
+
+    handleSubmit('email-input', 'waitlist-form', 'success-msg');
+    handleSubmit('cta-email', 'cta-form', 'cta-success');
+  </script>
+
+</body>
+</html>
