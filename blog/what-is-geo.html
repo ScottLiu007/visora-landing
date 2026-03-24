@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is GEO and Why Your SaaS is Invisible to ChatGPT | Visora</title>
+  <meta name="description" content="Generative Engine Optimization (GEO) explained: why your product doesn't appear in ChatGPT or Perplexity, and the exact steps to fix it.">
+  <link rel="canonical" href="https://visoraapp.com/blog/what-is-geo">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is GEO and Why Your SaaS is Invisible to ChatGPT",
+    "description": "Generative Engine Optimization explained — why your product doesn't appear in AI search, and the exact steps to fix it.",
+    "author": {"@type": "Person", "name": "Tao Liu"},
+    "publisher": {"@type": "Organization", "name": "Visora", "url": "https://visoraapp.com"},
+    "datePublished": "2026-03-24",
+    "dateModified": "2026-03-24",
+    "url": "https://visoraapp.com/blog/what-is-geo"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is GEO?","acceptedAnswer":{"@type":"Answer","text":"GEO (Generative Engine Optimization) is the practice of optimizing your content so AI search engines like ChatGPT, Perplexity, and Claude recommend your brand in their generated answers."}},
+      {"@type":"Question","name":"Why is my SaaS invisible to ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"Most SaaS products are invisible to ChatGPT because AI systems build recommendations primarily from third-party sources — review sites like G2, comparison articles, and community discussions — rather than from your website directly."}},
+      {"@type":"Question","name":"How long does it take to see GEO results?","acceptedAnswer":{"@type":"Answer","text":"GEO results typically appear in 2-6 weeks for quick wins like G2 submission and FAQ pages. Sustained visibility growth takes 2-3 months of consistent effort."}}
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0a;--bg-2:#111;--border:#222;--text:#e8e8e8;--text-2:#888;--text-3:#555;--green:#00e87a;--green-dim:rgba(0,232,122,.12)}
+    body{background:var(--bg);color:var(--text);font-family:'Geist',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:'Instrument Serif',serif;font-size:22px;color:var(--text);text-decoration:none}
+    .logo span{color:var(--green)}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-links a{font-size:13px;color:var(--text-3);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--text-2)}
+    .nav-cta{background:var(--green);color:#000;font-size:13px;font-weight:600;padding:8px 18px;border-radius:6px;text-decoration:none}
+    .wrap{max-width:740px;margin:0 auto;padding:120px 24px 80px}
+    .article-meta{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:16px}
+    h1{font-family:'Instrument Serif',serif;font-size:clamp(36px,6vw,60px);line-height:1.1;letter-spacing:-1px;margin-bottom:24px}
+    .article-intro{font-size:18px;color:var(--text-2);line-height:1.75;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
+    h2{font-family:'Instrument Serif',serif;font-size:clamp(24px,4vw,36px);line-height:1.2;letter-spacing:-.5px;margin:56px 0 20px}
+    h3{font-size:18px;font-weight:600;color:var(--text);margin:32px 0 12px}
+    p{font-size:16px;color:var(--text-2);line-height:1.8;margin-bottom:20px}
+    ul,ol{margin:0 0 20px 0;padding-left:24px}
+    li{font-size:16px;color:var(--text-2);line-height:1.8;margin-bottom:8px}
+    li strong,p strong{color:var(--text);font-weight:600}
+    .callout{background:var(--bg-2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;padding:20px 24px;margin:32px 0}
+    .callout p{margin:0;font-size:15px}
+    .data-box{background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:28px;margin:32px 0}
+    .data-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
+    .data-row:last-child{border-bottom:none}
+    .data-label{color:var(--text-2)}
+    .data-val{font-family:'DM Mono',monospace;color:var(--green);font-size:13px}
+    .step-list{margin:0;padding:0;list-style:none}
+    .step-list li{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
+    .step-list li:last-child{border-bottom:none}
+    .step-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--green);min-width:28px;margin-top:2px}
+    .step-content h3{margin:0 0 8px}
+    .step-content p{margin:0;font-size:14px}
+    .cta-box{margin-top:64px;background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:40px;text-align:center}
+    .cta-box h2{font-family:'Instrument Serif',serif;font-size:28px;margin:0 0 8px;letter-spacing:-.3px}
+    .cta-box p{font-size:14px;color:var(--text-2);margin:0 0 24px}
+    .cta-box form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .cta-box input{background:#181818;border:1px solid #333;color:var(--text);font-family:'Geist',sans-serif;font-size:14px;padding:12px 18px;border-radius:8px;width:260px;outline:none}
+    .cta-box input:focus{border-color:var(--green)}
+    .btn{background:var(--green);color:#000;font-family:'Geist',sans-serif;font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;border:none;cursor:pointer}
+    .success{display:none;font-family:'DM Mono',monospace;font-size:13px;color:var(--green);margin-top:12px}
+    footer{border-top:1px solid var(--border);padding:24px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-links{display:flex;gap:20px}
+    .footer-links a{font-size:13px;color:var(--text-3);text-decoration:none}
+    .footer-copy{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-3)}
+    @media(max-width:640px){nav{padding:16px 20px}.wrap{padding:100px 20px 60px}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">Visora<span>.</span></a>
+  <div class="nav-links">
+    <a href="/faq">FAQ</a>
+    <a href="/blog/best-geo-tools-2026">GEO Tools</a>
+    <a href="https://visoraapp.com/#waitlist" class="nav-cta">Join Waitlist</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <p class="article-meta">March 24, 2026 · 8 min read · By Tao Liu</p>
+  <h1>What is GEO and Why Your SaaS is Invisible to ChatGPT</h1>
+  <p class="article-intro">
+    Your product ranks on Google. You've done the SEO. But when someone asks ChatGPT
+    "what's the best tool for X?" — your name never comes up. This isn't an accident.
+    It's a structural gap that most founders don't know exists. Here's what it is, why
+    it happens, and exactly how to fix it.
+  </p>
+
+  <h2>What is GEO?</h2>
+  <p>
+    <strong>GEO stands for Generative Engine Optimization</strong> — the practice of
+    structuring and positioning your content so that AI-powered search engines like
+    ChatGPT, Perplexity, Claude, and Google AI Overviews recommend your brand in their
+    generated answers.
+  </p>
+  <p>
+    Think of it as SEO, but for a completely different distribution channel. Just as
+    SEO means optimizing to rank in Google's blue links, GEO means optimizing to be
+    cited in AI-generated responses.
+  </p>
+  <div class="callout">
+    <p><strong>The key distinction:</strong> A website can rank #1 on Google and still be completely invisible to ChatGPT. The signals that drive each are fundamentally different.</p>
+  </div>
+
+  <h2>Why Does This Matter Now?</h2>
+  <p>AI search is not a future trend. It is already a primary discovery channel for a significant share of users:</p>
+  <div class="data-box">
+    <div class="data-row"><span class="data-label">ChatGPT weekly active users</span><span class="data-val">800M+</span></div>
+    <div class="data-row"><span class="data-label">Perplexity daily queries</span><span class="data-val">60-70M</span></div>
+    <div class="data-row"><span class="data-label">AI search traffic growth (2025)</span><span class="data-val">+500% YoY</span></div>
+    <div class="data-row"><span class="data-label">Google searches showing AI Overviews</span><span class="data-val">&gt;50%</span></div>
+    <div class="data-row"><span class="data-label">Gartner: traditional search volume decline by 2026</span><span class="data-val">-25%</span></div>
+  </div>
+  <p>
+    When a potential customer asks Perplexity "what's the best project management tool
+    for a 5-person startup?", they expect a direct recommendation. If your product isn't
+    in that recommendation, you don't get the click. You don't get the trial. You don't
+    exist, from that user's perspective.
+  </p>
+
+  <h2>Why Your SaaS is Invisible to AI Search</h2>
+  <p>
+    Here's the counterintuitive truth: AI systems don't primarily learn about your
+    product from your website. They build recommendations from <strong>third-party
+    sources</strong> — and most SaaS products have almost none.
+  </p>
+  <p>When Perplexity answers "what's the best tool for X?", it is synthesizing:</p>
+  <ul>
+    <li><strong>Review aggregators (G2, Capterra, Trustpilot)</strong> — ~40% of citations in our testing</li>
+    <li><strong>"Best tools" roundup articles</strong> on authoritative domains — ~30%</li>
+    <li><strong>Community discussions</strong> on Reddit, Hacker News — ~20%</li>
+    <li><strong>Official documentation and structured content</strong> — ~10%</li>
+  </ul>
+  <p>
+    If you're not in these places, you're invisible — regardless of how good your
+    homepage copy is or how many blog posts you've written for SEO.
+  </p>
+  <div class="callout">
+    <p><strong>Real example:</strong> We ran 10 queries about GEO tools on Perplexity. Otterly appeared 5 times. Rankscale appeared once. Most GEO tools we tested: zero appearances. Same category, completely different AI visibility — because of third-party presence, not product quality.</p>
+  </div>
+
+  <h2>How AI Search Actually Decides What to Recommend</h2>
+  <h3>Perplexity</h3>
+  <p>
+    Perplexity is a real-time search engine. When someone asks a question, it crawls
+    the web, finds relevant pages, and synthesizes an answer that cites those pages.
+    Your brand appears in Perplexity when authoritative pages mention you. The citation
+    sources are visible — which makes Perplexity the most actionable platform to optimize for.
+  </p>
+  <h3>ChatGPT</h3>
+  <p>
+    ChatGPT draws from training data (updated periodically) and, in Search mode, from
+    real-time Bing results. Your brand needs to be mentioned frequently across the open
+    web to appear in training data, and in indexed Bing content to appear in Search mode.
+    The signals are less transparent than Perplexity but follow the same logic: third-party
+    authority matters far more than your own content.
+  </p>
+  <h3>Google AI Overviews</h3>
+  <p>
+    Google AI Overviews has the highest overlap with traditional SEO of any AI platform —
+    it uses Google's own index. But it still prioritizes structured content,
+    clear question-answer format, and authoritative third-party signals over raw ranking position.
+  </p>
+
+  <h2>The 5 Fastest Ways to Improve Your AI Visibility</h2>
+  <ul class="step-list">
+    <li>
+      <span class="step-num">01</span>
+      <div class="step-content">
+        <h3>Submit to G2 and Capterra</h3>
+        <p>These review aggregators are among the most-cited sources by Perplexity. A basic listing is free and takes under an hour. If you get even 5-10 reviews, your citation probability increases significantly. Start here before anything else.</p>
+      </div>
+    </li>
+    <li>
+      <span class="step-num">02</span>
+      <div class="step-content">
+        <h3>Create a proper FAQ page with schema markup</h3>
+        <p>An FAQ page with FAQPage JSON-LD schema provides AI systems with structured question-answer pairs they can cite directly. This is one of the highest-ROI technical changes you can make. Write 20-50 questions covering your product, use case, and category. Use plain HTML — JavaScript-heavy content may not render for AI crawlers.</p>
+      </div>
+    </li>
+    <li>
+      <span class="step-num">03</span>
+      <div class="step-content">
+        <h3>Check your robots.txt</h3>
+        <p>Make sure GPTBot (OpenAI), PerplexityBot, ClaudeBot (Anthropic), and Googlebot are allowed to crawl your site. Many aggressive bot-blocking configurations accidentally block AI crawlers. If they can't crawl you, you don't exist to them.</p>
+      </div>
+    </li>
+    <li>
+      <span class="step-num">04</span>
+      <div class="step-content">
+        <h3>Add an llms.txt file</h3>
+        <p>Place a plain-text file at yourdomain.com/llms.txt with a clear description of what your product does, who it's for, and what problems it solves. This emerging standard (analogous to robots.txt) helps AI systems accurately understand your brand from a machine-readable source you control.</p>
+      </div>
+    </li>
+    <li>
+      <span class="step-num">05</span>
+      <div class="step-content">
+        <h3>Get into "best tools" articles in your category</h3>
+        <p>Find the top 5 articles that rank when someone searches "best [your category] tools." Reach out to those authors and ask to be included. Even a single mention in a high-authority roundup article can significantly lift your AI visibility because these are exactly the pages AI systems cite most.</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2>How Long Does It Take to See Results?</h2>
+  <p>
+    GEO results typically appear faster than traditional SEO:
+  </p>
+  <ul>
+    <li><strong>Days:</strong> Schema markup and robots.txt fixes (crawlers re-index quickly)</li>
+    <li><strong>2-4 weeks:</strong> G2/Capterra listings, FAQ page indexing</li>
+    <li><strong>4-8 weeks:</strong> Being added to "best tools" articles</li>
+    <li><strong>2-3 months:</strong> Sustained visibility growth from consistent community presence</li>
+  </ul>
+  <p>
+    The fastest signal you can get right now: open Perplexity and ask 10 questions
+    a potential customer in your category might ask. See who appears. That's your
+    competitive landscape, and it's the starting point for your GEO audit.
+  </p>
+
+  <h2>Tracking Your GEO Progress</h2>
+  <p>
+    Unlike SEO — where tools like Ahrefs and SEMrush make ranking position easy to
+    track — GEO has historically been hard to measure systematically. You'd have to
+    manually ask AI platforms questions and count brand mentions by hand.
+  </p>
+  <p>
+    That's what we're building with <a href="https://visoraapp.com" style="color:var(--green);text-decoration:none">Visora</a>:
+    an automated GEO tracking tool that sends 50 relevant questions to AI platforms,
+    tracks who appears, traces citation sources back to their root, and generates
+    ready-to-use content to close the gaps. Built specifically for indie hackers and
+    small teams — starting at $29/month, not $250.
+  </p>
+
+  <h2>The Takeaway</h2>
+  <p>
+    GEO is not optional for SaaS products in 2026. AI search is already a primary
+    discovery channel for a large and growing share of users. The brands that build
+    their AI visibility now will be significantly harder to displace than those starting
+    later — the same compounding advantage that early SEO movers enjoyed.
+  </p>
+  <p>
+    The good news: the fundamentals are simple. Get into third-party directories,
+    structure your content for AI citation, make sure bots can crawl you, and participate
+    authentically in your community. None of this requires enterprise budgets.
+  </p>
+  <p>
+    Start with the Perplexity audit. It takes 10 minutes and you'll immediately see
+    where you stand.
+  </p>
+
+  <div class="cta-box">
+    <h2>Track your AI visibility with Visora</h2>
+    <p>Join the early access waitlist — ships Q2 2026, starting at $29/month.</p>
+    <form id="art-form">
+      <input type="email" placeholder="your@email.com" required id="art-email">
+      <button type="submit" class="btn">Join Waitlist</button>
+    </form>
+    <p class="success" id="art-success">✓ You're on the list.</p>
+  </div>
+</div>
+
+<footer>
+  <a href="/" class="logo">Visora<span>.</span></a>
+  <div class="footer-links">
+    <a href="/faq">FAQ</a>
+    <a href="/blog/best-geo-tools-2026">Best GEO Tools</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+  <span class="footer-copy">© 2026 Visora · visoraapp.com</span>
+</footer>
+
+<script>
+  document.getElementById('art-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('art-email').value;
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Joining...'; btn.disabled = true;
+    try {
+      await fetch('https://formspree.io/f/xpwzgqvk', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email, source: 'blog-what-is-geo'})
+      });
+    } catch(err) {}
+    e.target.style.display = 'none';
+    document.getElementById('art-success').style.display = 'block';
+  });
+</script>
+</body>
+</html>
